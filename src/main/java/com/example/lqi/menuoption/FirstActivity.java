@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,10 +26,8 @@ public class FirstActivity  extends Activity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String data = "Hello SecondActivity";
                 Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
-                intent.putExtra("extra_data", data);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -51,5 +50,23 @@ public class FirstActivity  extends Activity {
         }
         return true;
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    String returnedData = data.getStringExtra("data_return");
+                    Log.d("FirstActivity", returnedData);
+                }
+                break;
+            default:
+        } }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("data_return", "Hello FirstActivity");
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 }
