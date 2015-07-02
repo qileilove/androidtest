@@ -71,4 +71,11 @@ public class FirstActivity  extends Activity {
         setResult(RESULT_OK, intent);
         finish();
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("FirstActivity", "onRestart");
+    }
+
 }

@@ -30,4 +30,10 @@ public class SecondActivity extends Activity {
                 });
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("SecondActivity", "onDestroy");
+    }
 }
