@@ -15,21 +15,19 @@ import android.widget.Toast;
 /**
  * Created by lqi on 6/29/15.
  */
-public class FirstActivity  extends Activity {
+public class FirstActivity  extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("FirstActivity", this.toString());
+        Log.d("FirstActivity", "Task id is " + getTaskId());
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.first_layout);
         Button button1 = (Button) findViewById(R.id.button_1);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FirstActivity.this,
-                        SecondActivity.class);
-                startActivity(intent);
+                SecondActivity.actionStart(FirstActivity.this, "data1", "data2");
             }
         });
 
